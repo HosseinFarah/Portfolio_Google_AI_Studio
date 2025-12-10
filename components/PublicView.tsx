@@ -210,7 +210,7 @@ export const PublicView: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary to-purple-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
                     {/* Construct the full URL if it's a relative path, otherwise use as is (if external) */}
                     <img 
-                        src={settings.heroImageUrl ? (settings.heroImageUrl.startsWith('http') || settings.heroImageUrl.startsWith('data') ? settings.heroImageUrl : `/${settings.heroImageUrl}`) : "https://picsum.photos/200/200?grayscale"} 
+                        src={settings.heroImageUrl ? (settings.heroImageUrl.startsWith('http') || settings.heroImageUrl.startsWith('data') ? settings.heroImageUrl : `/me/${settings.heroImageUrl}`) : "https://picsum.photos/200/200?grayscale"} 
                         alt="Profile" 
                         className="relative w-56 h-56 md:w-80 md:h-80 rounded-full border-4 border-primary/50 object-cover shadow-[0_0_40px_rgba(59,130,246,0.4)] hover:grayscale-0 transition-all duration-700"
                     />

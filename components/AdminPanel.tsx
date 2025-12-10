@@ -518,7 +518,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogout }) => {
                             
                             <div className="w-32 h-32 bg-black rounded-full border border-gray-600 overflow-hidden relative group shrink-0 mx-auto md:mx-0">
                                 {settings.heroImageUrl ? (
-                                    <img src={settings.heroImageUrl} alt="Hero Preview" className="w-full h-full object-cover" />
+                                    <img src={`/me/${settings.heroImageUrl}`} alt="Hero Preview" className="w-full h-full object-cover" />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">No Image</div>
                                 )}

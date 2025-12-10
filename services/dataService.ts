@@ -1,7 +1,6 @@
-
 import { Project, Skill, Message, SiteSettings, VisitorStat } from '../types';
 
-const API_BASE = '/api'; // Relative path assuming PHP files are in public/api folder
+const API_BASE = '/me/api'; // Relative path assuming PHP files are in public/api folder
 
 class DataService {
   
