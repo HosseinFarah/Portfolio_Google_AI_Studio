@@ -1,4 +1,3 @@
-
 export enum Language {
   EN = 'en',
   FI = 'fi',
@@ -58,6 +57,7 @@ export interface SiteSettings {
   contactEmail: string;
   contactPhone: string;
   mapEmbedUrl: string;
+  geminiApiKey?: string; // NEW: Gemini API key for Google AI Studio
 }
 
 export interface VisitorStat {

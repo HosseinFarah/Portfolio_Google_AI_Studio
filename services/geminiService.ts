@@ -23,22 +23,20 @@ const getSystemInstruction = async () => {
 };
 
 export const chatWithGemini = async (userMessage: string) => {
-  if (!process.env.API_KEY) {
+  const settings = await dbService.getSettings();
+  const apiKey = settings?.geminiApiKey;
+  if (!apiKey) {
     return "AI Assistant is currently offline (Missing API Key).";
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
-    // Await the system instruction construction
+    const ai = new GoogleGenAI({ apiKey });
     const systemInstruction = await getSystemInstruction();
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: userMessage,
-      config: {
-        systemInstruction: systemInstruction,
-      }
+      config: { systemInstruction }
     });
 
     return response.text;

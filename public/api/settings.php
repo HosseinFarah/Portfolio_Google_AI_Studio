@@ -76,9 +76,9 @@ if ($method === 'GET') {
             ],
             'contactEmail' => $row['contact_email'] ?? '',
             'contactPhone' => $row['contact_phone'] ?? '',
-            'mapEmbedUrl' => $row['map_embed_url'] ?? ''
+            'mapEmbedUrl' => $row['map_embed_url'] ?? '',
+            'geminiApiKey' => $row['gemini_api_key'] ?? ''
         ];
-
         echo json_encode($settings);
     } catch (Exception $e) {
         echo json_encode(['error' => $e->getMessage()]);
@@ -98,29 +98,25 @@ if ($method === 'POST') {
     $reSecKey = $input['recaptchaSecretKey'] ?? '';
     $heroTitle = $input['heroTitle'] ?? '';
     $heroSub = $input['heroSubtitle'] ?? '';
-    
-    // Handle Image Upload
-    $heroImgRaw = $input['heroImageUrl'] ?? '';
-    $heroImg = uploadImage($heroImgRaw, 'hero');
-    
+    $heroImg = uploadImage($input['heroImageUrl'] ?? '', 'hero');
     $aboutEn = $input['aboutText']['en'] ?? '';
     $aboutFi = $input['aboutText']['fi'] ?? '';
     $aboutFa = $input['aboutText']['fa'] ?? '';
-    
     $email = $input['contactEmail'] ?? '';
     $phone = $input['contactPhone'] ?? '';
     $map = $input['mapEmbedUrl'] ?? '';
+    $geminiApiKey = $input['geminiApiKey'] ?? '';
 
     try {
         $check = $pdo->query("SELECT id FROM settings WHERE id = 1")->fetch();
-        
         if ($check) {
             $sql = "UPDATE settings SET 
                 smtp_host=?, smtp_port=?, smtp_user=?, smtp_pass=?,
                 recaptcha_site_key=?, recaptcha_secret_key=?,
                 hero_title=?, hero_subtitle=?, hero_image_url=?,
                 about_text_en=?, about_text_fi=?, about_text_fa=?,
-                contact_email=?, contact_phone=?, map_embed_url=?
+                contact_email=?, contact_phone=?, map_embed_url=?,
+                gemini_api_key=?
                 WHERE id = 1";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
@@ -128,7 +124,8 @@ if ($method === 'POST') {
                 $reSiteKey, $reSecKey,
                 $heroTitle, $heroSub, $heroImg,
                 $aboutEn, $aboutFi, $aboutFa,
-                $email, $phone, $map
+                $email, $phone, $map,
+                $geminiApiKey
             ]);
         } else {
             $sql = "INSERT INTO settings (
@@ -136,15 +133,17 @@ if ($method === 'POST') {
                 recaptcha_site_key, recaptcha_secret_key,
                 hero_title, hero_subtitle, hero_image_url,
                 about_text_en, about_text_fi, about_text_fa,
-                contact_email, contact_phone, map_embed_url
-            ) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                contact_email, contact_phone, map_embed_url,
+                gemini_api_key
+            ) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 $smtpHost, $smtpPort, $smtpUser, $smtpPass,
                 $reSiteKey, $reSecKey,
                 $heroTitle, $heroSub, $heroImg,
                 $aboutEn, $aboutFi, $aboutFa,
-                $email, $phone, $map
+                $email, $phone, $map,
+                $geminiApiKey
             ]);
         }
 

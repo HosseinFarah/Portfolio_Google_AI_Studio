@@ -494,6 +494,16 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onLogout }) => {
                     <label className="block text-sm text-gray-400 mb-1">Map Embed URL (iframe src)</label>
                     <input type="text" value={settings.mapEmbedUrl} onChange={e => setSettings({...settings, mapEmbedUrl: e.target.value})} className={inputClass + " mb-4"} />
                     
+                    {/* NEW: Gemini API key */}
+                    <label className="block text-sm text-gray-400 mb-1">Google AI Studio (Gemini) API Key</label>
+                    <input
+                      type="text"
+                      value={settings.geminiApiKey || ''}
+                      onChange={e => setSettings({...settings, geminiApiKey: e.target.value})}
+                      className={inputClass + " mb-4"}
+                      placeholder="Paste your Gemini API key"
+                    />
+
                     <label className="block text-sm text-gray-400 mb-1">Hero Title</label>
                     <input type="text" value={settings.heroTitle} onChange={e => setSettings({...settings, heroTitle: e.target.value})} className={inputClass + " mb-4"} />
                     
