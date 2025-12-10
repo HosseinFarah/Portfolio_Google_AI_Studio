@@ -164,7 +164,7 @@ export const PublicView: React.FC = () => {
                 <div className="flex items-center gap-2 border-l border-gray-700 pl-4">
                     <button onClick={() => toggleLang(Language.EN)} className={`text-xs ${lang === Language.EN ? 'text-primary' : 'text-gray-500'}`}>EN</button>
                     <button onClick={() => toggleLang(Language.FI)} className={`text-xs ${lang === Language.FI ? 'text-primary' : 'text-gray-500'}`}>FI</button>
-                    <button onClick={() => toggleLang(Language.FA)} className={`text-xs ${lang === Language.FA ? 'text-primary' : 'text-gray-500'}`}>FA</button>
+                    {/* <button onClick={() => toggleLang(Language.FA)} className={`text-xs ${lang === Language.FA ? 'text-primary' : 'text-gray-500'}`}>FA</button> */}
                 </div>
                 <a href="#/login" onClick={navigateToLogin} className="bg-white/10 hover:bg-white/20 px-4 py-1.5 rounded-full text-sm transition-all cursor-pointer">Login</a>
             </div>
@@ -328,8 +328,8 @@ export const PublicView: React.FC = () => {
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
             <p>&copy; {new Date().getFullYear()} Hossein Farahkordmahaleh. All rights reserved.</p>
             <div className="flex items-center gap-4 mt-4 md:mt-0">
-                <span>Visitors Today: {settings ? 1 : 0}</span> {/* Placeholder */}
-                <Globe size={16} />
+                {/* <span>Visitors Today: {settings ? 1 : 0}</span> Placeholder */}
+                {/* <Globe size={16} /> */}
             </div>
         </div>
       </footer>

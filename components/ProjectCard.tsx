@@ -97,13 +97,13 @@ export const ProjectCard: React.FC<Props> = ({ project, lang, skills, onLike }) 
               </a>
             )}
           </div>
-          <button 
+          {/* <button 
             onClick={onLike}
             className="flex items-center space-x-1 text-gray-400 hover:text-red-500 transition-colors"
           >
             <ThumbsUp size={18} />
             <span className="text-sm">{project.likes}</span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
